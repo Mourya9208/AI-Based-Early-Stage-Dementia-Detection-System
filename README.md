@@ -112,3 +112,22 @@ AI-Based-Early-Stage-Dementia-Detection-System/
 ├── app.py
 ├── README.md
 └── .gitignore
+
+
+## Application Screenshots
+
+### User Input Screen
+
+![User Input Screen](screenshots/user-input.png)
+
+### Prediction Result
+
+![Prediction Result](screenshots/prediction-result.png)
+
+### Clinical Explanation
+
+![Clinical Explanation](screenshots/clinical-explanation.png)
+
+### Model Performance
+
+![Model Performance](screenshots/model-performance.png)
