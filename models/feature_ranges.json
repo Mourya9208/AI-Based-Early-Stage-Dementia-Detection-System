@@ -1,0 +1,22 @@
+{
+    "mmse": {
+        "min": 0,
+        "max": 30
+    },
+    "functionalassessment": {
+        "min": 0,
+        "max": 10
+    },
+    "memorycomplaints": {
+        "min": 0,
+        "max": 1
+    },
+    "behavioralproblems": {
+        "min": 0,
+        "max": 1
+    },
+    "adl": {
+        "min": 0,
+        "max": 10
+    }
+}

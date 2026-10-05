@@ -1,0 +1,24 @@
+{
+    "method": "Boruta Feature Selection",
+    "confirmed_features": [
+        "mmse",
+        "functionalassessment",
+        "memorycomplaints",
+        "behavioralproblems",
+        "adl"
+    ],
+    "top_features": [
+        "mmse",
+        "functionalassessment",
+        "memorycomplaints",
+        "behavioralproblems",
+        "adl",
+        "sleepquality",
+        "dietquality",
+        "cholesterolhdl",
+        "physicalactivity",
+        "cholesteroltriglycerides"
+    ],
+    "total_confirmed": 5,
+    "total_selected": 10
+}

@@ -1,0 +1,7 @@
+{
+    "model": "Boruta + XGBoost",
+    "accuracy": 94.19,
+    "precision": 91.5,
+    "recall": 92.11,
+    "f1_score": 91.8
+}

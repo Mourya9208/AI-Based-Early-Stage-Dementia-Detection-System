@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+
+    Dementia Prediction System
+
+  </title>
+
+  <link rel="stylesheet" href="{{ url_for(
+          'static',
+          filename='css/style.css'
+          ) }}">
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <details class="metrics-dropdown">
+
+      <summary>
+
+        Model Performance
+
+      </summary>
+
+      <div class="metrics-content">
+
+        <p>
+
+          <b>Accuracy:</b>
+
+          {{ metrics.accuracy }}%
+
+        </p>
+
+        <p>
+
+          <b>Precision:</b>
+
+          {{ metrics.precision }}%
+
+        </p>
+
+        <p>
+
+          <b>Recall:</b>
+
+          {{ metrics.recall }}%
+
+        </p>
+
+        <p>
+
+          <b>F1 Score:</b>
+
+          {{ metrics.f1_score }}%
+
+        </p>
+
+      </div>
+
+    </details>
+
+    <h1>
+
+      Dementia Prediction System
+
+    </h1>
+
+    <form method="POST">
+
+      <div class="grid">
+
+        {% for feature in features %}
+
+        <div class="input-group">
+
+          <label>
+
+            {{ feature.replace('_',' ').title() }}
+
+            {% if feature == "mmse" %}
+
+            <br>
+
+            <small>
+
+              Range: 0 - 30
+
+            </small>
+
+            {% elif not (
+            feature_ranges[feature]["min"] == 0
+            and
+            feature_ranges[feature]["max"] == 1
+            ) %}
+
+            <br>
+
+            <small>
+
+              Range:
+              {{ "%.0f"|format(feature_ranges[feature]["min"]) }}
+              -
+              {{ "%.0f"|format(feature_ranges[feature]["max"]) }}
+
+            </small>
+
+            {% endif %}
+
+          </label>
+
+          {% if feature == "mmse" %}
+
+          <input type="number" name="{{ feature }}" min="0" max="30" step="any" required>
+
+          {% elif feature_ranges[feature]["min"] == 0 and feature_ranges[feature]["max"] == 1 %}
+
+          <select name="{{ feature }}" required>
+
+            <option value="">
+
+              Select
+
+            </option>
+
+            <option value="0">
+
+              No
+
+            </option>
+
+            <option value="1">
+
+              Yes
+
+            </option>
+
+          </select>
+
+          {% else %}
+
+          <input type="number" name="{{ feature }}" min="{{ feature_ranges[feature]['min'] }}"
+            max="{{ feature_ranges[feature]['max'] }}" step="any" required>
+
+          {% endif %}
+
+        </div>
+
+        {% endfor %}
+
+      </div>
+
+      <button type="submit">
+
+        Predict
+
+      </button>
+
+    </form>
+
+    {% if result %}
+
+    <div class="result">
+
+      <h2>
+
+        Prediction Result
+
+      </h2>
+
+      <p>
+
+        <b>Prediction Status:</b>
+
+        {{ result.prediction }}
+
+      </p>
+
+      <p>
+
+        <b>Risk Level:</b>
+
+        {{ result.risk_level }}
+
+      </p>
+
+      <p>
+
+        <b>Dementia Probability:</b>
+
+        {{ result.confidence }} %
+
+      </p>
+
+      <h3>
+
+        Prediction Summary
+
+      </h3>
+
+      <pre>
+
+{{ result.explanation }}
+
+            </pre>
+
+    </div>
+
+    {% endif %}
+
+  </div>
+
+</body>
+
+</html>
